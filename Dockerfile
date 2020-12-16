@@ -24,7 +24,7 @@ COPY srcs/config.inc.php /var/www/html/phpmyadmin/
 RUN apt-get install -y openssl
 #autoindex
 
-
+COPY srcs/index.html /var/www/html/localhost
 
 
 # COPY copy source code
