@@ -11,17 +11,16 @@ server{
 	listen [::]:443 ssl;
 	
 	
-	ssl_certificate /etc/ssl/private/apita-da.crt;
-	ssl_certificate_key /etc/ssl/certs/apita-da.key;
+	ssl_certificate /etc/ssl/certs/apita-da.crt;
+	ssl_certificate_key /etc/ssl/private/apita-da.key;
 
-	root /var/www/html/localhost;
-	index index.html index.htm index.nginx-debian.html index.php;
-	
-	autoindex on;
+	root /var/www/html/;
+	index index.html index.htm  index.php;
 	
 	server_name localhost;
 
 	location / {
+		autoindex on;
 		try_files $uri $uri/ =404;
 	}
 

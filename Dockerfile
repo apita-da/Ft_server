@@ -24,7 +24,7 @@ RUN openssl req -x509 -nodes -days 42 -newkey rsa:2048 -subj "/C=SP/ST=Madrid/L=
 #autoindex
 
 #html
-COPY srcs/index.html /var/www/localhost
+COPY srcs/index.html /var/www/html/
 
 
 # COPY copy source code
