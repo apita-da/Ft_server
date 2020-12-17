@@ -10,16 +10,18 @@ server{
 	listen 443 ssl;
 	listen [::]:443 ssl;
 	
-	server_name localhost;
 	
-	ssl_certificate /etc/nginx/ssl/localhost.pem; mi clave ssl
-	ssl_certificate_key /etc/nginx/ssl/localhost.key.pem;
+	ssl_certificate /etc/ssl/private/apita-da.crt;
+	ssl_certificate_key /etc/ssl/certs/apita-da.key;
 
-	root /var/www/localhost;
+	root /var/www/html/localhost;
 	index index.html index.htm index.nginx-debian.html index.php;
+	
+	autoindex on;
+	
+	server_name localhost;
 
 	location / {
-		autoindex on;
 		try_files $uri $uri/ =404;
 	}
 

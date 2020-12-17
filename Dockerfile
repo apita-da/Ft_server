@@ -4,9 +4,7 @@ EXPOSE 80 443
 
 #INSTALL services
 RUN apt-get update && apt-get upgrade -y
-RUN apt-get -y install nginx
-RUN apt-get -y install mariadb-server
-RUN apt-get install -y php-fpm php-mysql wget
+RUN apt-get -y install nginx mariadb-server php-fpm php-mysql wget openssl
 
 #wordpress
 RUN wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && \
@@ -21,11 +19,12 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-lang
 COPY srcs/config.inc.php /var/www/html/phpmyadmin/
 
 #ssl
-RUN apt-get install -y openssl
+RUN openssl req -x509 -nodes -days 42 -newkey rsa:2048 -subj "/C=SP/ST=Madrid/L=Madrid/O=42/CN=apita-da" -keyout /etc/ssl/private/apita-da.key -out /etc/ssl/certs/apita-da.crt
+
 #autoindex
 
 #html
-COPY srcs/index.html /var/www/html/localhost
+COPY srcs/index.html /var/www/localhost
 
 
 # COPY copy source code
@@ -33,4 +32,4 @@ COPY srcs/index.html /var/www/html/localhost
 CMD service nginx start && \
     service php7.3-fpm start && \
     service mysql start && \
-    bin/bash
+    sleep infinity
