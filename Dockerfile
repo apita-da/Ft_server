@@ -19,7 +19,7 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-lang
 COPY srcs/config.inc.php /var/www/html/phpmyadmin/
 
 #ssl
-RUN openssl req -x509 -nodes -days 42 -newkey rsa:2048 -subj "/C=SP/ST=Madrid/L=Madrid/O=42/CN=apita-da" -keyout /etc/ssl/private/apita-da.key -out /etc/ssl/certs/apita-da.crt
+RUN openssl req -x509 -nodes -days 133 -newkey rsa:2048 -subj "/C=SP/ST=Madrid/L=Madrid/O=42/CN=localhost" -keyout /etc/ssl/private/apita-da.key -out /etc/ssl/certs/apita-da.crt
 
 #autoindex
 
