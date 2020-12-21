@@ -14,7 +14,7 @@ server{
 	ssl_certificate /etc/ssl/certs/apita-da.crt;
 	ssl_certificate_key /etc/ssl/private/apita-da.key;
 
-	root /var/www/html/localhost;
+	root /var/www/html;
 	index index.html index.htm index.nginx-debian.html index.php;
 	
 	autoindex on;
