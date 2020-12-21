@@ -32,7 +32,7 @@ define( 'DB_PASSWORD', '1234' );
 define( 'DB_HOST', 'localhost' );
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define( 'DB_CHARSET', 'utf8mb4' );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
@@ -46,14 +46,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         'PkZz)^&}+mUB5s$H.ut)-P:F!NUs![%Am>x+R $ -4<1P&Rw1&HP+~8L+%};*&2<');
-define( 'SECURE_AUTH_KEY',  '@G)e?nD(-0b.#oGsQj#MJ~N?C-}Qj /BGUHqJR=S,LOsW%;AiI/-g<qWs{rDNg0c');
-define( 'LOGGED_IN_KEY',    'CReB!ggk<=7^c]DYzvCtwV)#m7}V~{OdwVH}{eVx|+S~s>cxGRhdou;/NrWPS7Ys');
-define( 'NONCE_KEY',        'r~x*u_r,:O2%9v+K Dp61[?k-f+P;9[(Hozz8T%,[gwj7[L8JhG0_!!I{okm<tjL');
-define( 'AUTH_SALT',        'hT}L2Wp((yvs>T=u]-H?D%<;GkadBMU.Y|)3o+++YvWG-R[q,vU sPYJ)kDtrja@');
-define( 'SECURE_AUTH_SALT', '~6S.cHJ-]+yzi$7+4<9oa@R4TbDpx*R^ywEfvA;jZd<i 6#?b8diHz|wMw@sGUP3');
-define( 'LOGGED_IN_SALT',   'L1<Bp45[.^%YC-HJWh/M|d4V;GHM9Sv8GP)fOw >H67SF;7e]G=yw3t7@PGBIA9F');
-define( 'NONCE_SALT',       'f*MRI:#}mU0+vU#8sP<$U+[|2K|!T!GqDr!esc-vTzcCX!F,@;;9%j<Qb2Kt<8MK');
+define( 'AUTH_KEY',         'tl$I8+*d>8|Avux7nzvpm.H^]s1<`8<8ejF#^.*>j+0u>xd8s_{!:30F?qKw3!L#' );
+define( 'SECURE_AUTH_KEY',  '?0n5/St-EhuIhy%&tT=x@=2*|zyFyts6G [4lk<#dj<h`%m_VU>Y7*1NNESQ(A|j' );
+define( 'LOGGED_IN_KEY',    'h`mV#!$G 5*gn|:+0z#_{zd`8BJPCIh%H!5~%9@m<Dw0#!=|T DC>He*FlT#P z3' );
+define( 'NONCE_KEY',        'OyMCNi:NdJ&u=p?L,nyY,[CPRTLlUWP;;X}iozpwcfq+3Q5W_{91m^`oTpSeYWxS' );
+define( 'AUTH_SALT',        'qx%B3Fi nTft;q>ND;u{8q1x.`7TnVO@*LLCmNW!Gp=C<BnJL>@L7c-d.vD!h!}L' );
+define( 'SECURE_AUTH_SALT', '/.b1[(tvA;qG1YO7(Yrp|Te7z@c?$Z,Z9TS4m2uixtOa!yMXVr<dYRPvW+<Zf_qh' );
+define( 'LOGGED_IN_SALT',   ';gZ}N(y{!R3nLiSD .avv]vK|r|`DfBHWaXEpM09Y..wK.qDE`GS4v`PZo &#K;z' );
+define( 'NONCE_SALT',       'H}YW}@?+(:?P?E#gN_]-`0!+:nLVspfx9_DDoC,66h``7kQb:(xRG)Jb3z=x{WgJ' );
 
 /**#@-*/
 
@@ -88,4 +88,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
-define('FS_METHOD', 'direct');
