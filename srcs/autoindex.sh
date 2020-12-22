@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-​
-#nginx_file="./nginx-conf"
-nginx_file='/etc/nginx/sites-available/config_nginx'
-​
-grep "autoindex on;" "$nginx_file" > /dev/null
+
+​#nginx_file="./nginx-conf"
+
+nginx_file='/etc/nginx/sites-enabled/config_nginx'
+​grep "autoindex on;" "$nginx_file" > /dev/null
 if [ $? -eq 0 ]; then
 	echo "Current state of autoindex is ON"
 	sed -i 's/autoindex on/autoindex off/' "$nginx_file"

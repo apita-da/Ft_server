@@ -1,8 +1,8 @@
 server {
 	listen 80;
 	listen [::]:80;
-	server_name localhost;
-	return 302 https://$server_name$request_uri;
+	server_name localhost www.localhost;
+	return 301 https://$server_name$request_uri;
 }
 
 server{
@@ -15,13 +15,13 @@ server{
 	ssl_certificate_key /etc/ssl/private/apita-da.key;
 
 	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html index.php;
+	index index.php index.html index.htm index.nginx-debian.html;
 	
-	autoindex on;
 	 
-	server_name localhost;
+	server_name localhost www.localhost;
 
 	location / {
+		autoindex on;
 		try_files $uri $uri/ =404;
 	}
 
