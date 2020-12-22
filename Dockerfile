@@ -7,29 +7,47 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get -y install nginx mariadb-server php-fpm php-mysql wget openssl
 
 # mysql
-COPY srcs/mysql.sh ./
-RUN sh mysql.sh
+# COPY srcs/mysql.sh ./
+# RUN sh mysql.sh
 
 #wordpress
 RUN wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && \
-	mv wordpress /var/www/html/wordpress/ && rm latest.tar.gz
+	mv wordpress /var/www/html/wordpress/ && rm latest.tar.gz && \
+    service mysql start && \
+	mysql -e "CREATE DATABASE database;" | mysql -u root --skip-password && \
+	mysql -e "GRANT ALL PRIVILEGES ON database.* TO 'root'@'localhost';" | mysql -u root --skip-password && \
+	mysql -e "FLUSH PRIVILEGES;" | mysql -u root -p --skip-password && \
+    echo "update mysql.user set plugin = 'mysql_native_password' where user='root';" | mysql -u root
 
 COPY srcs/wp-config.php var/www/html/wordpress/
-
 
 #PhpMyAdmin
 RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-languages.tar.gz && tar -xzvf /phpMyAdmin-5.0.4-all-languages.tar.gz && \
     mv phpMyAdmin-5.0.4-all-languages /var/www/html/phpmyadmin/ && rm phpMyAdmin-5.0.4-all-languages.tar.gz
-
+    
 COPY srcs/config.inc.php var/www/html/phpmyadmin/
 
+RUN chmod 0755 /var/www/html/phpmyadmin/config.inc.php && \
+    service mysql start && \
+	echo "GRANT ALL PRIVILEGES ON *.* TO 'apita-da'@'localhost' IDENTIFIED BY '1234' WITH GRANT OPTION;" | mysql -u root  && \
+	echo "FLUSH PRIVILEGES;" | mysql -u root 
+
+
 #ssl
-RUN openssl req -x509 -nodes -days 133 -newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=localhost" -keyout /etc/ssl/private/apita-da.key -out /etc/ssl/certs/apita-da.crt
-#autoindex
+RUN chmod 700 /etc/ssl/private && \
+    openssl req -x509 -nodes -days 133 -newkey rsa:2048 -subj "/C=SP/ST=Spain/L=Madrid/O=42/CN=localhost" -keyout /etc/ssl/private/apita-da.key -out /etc/ssl/certs/apita-da.crt && \
+    openssl dhparam -out /etc/nginx/dhparam.pem 1000 && \
+    chown -R www-data:www-data /var/www/* && \
+    chmod -R 755 /var/www/*
 
 #html
 COPY srcs/index.html var/www/html/
-COPY srcs/config_nginx  /etc/nginx/sites-available/default
+
+#autoindex
+COPY srcs/nginx-conf  /etc/nginx/sites-available/default
+COPY srcs/autoindex.sh ./
+# RUN  sh autoindex.sh
+
 
 
 # COPY copy source code
