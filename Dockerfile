@@ -13,11 +13,6 @@ RUN sh mysql.sh
 #wordpress
 RUN wget https://wordpress.org/latest.tar.gz && tar -xzvf latest.tar.gz && \
 	mv wordpress /var/www/html/wordpress/ && rm latest.tar.gz 
-    # service mysql start && \
-	# mysql -e "CREATE DATABASE database;" | mysql -u root --skip-password && \
-	# mysql -e "GRANT ALL PRIVILEGES ON database.* TO 'root'@'localhost';" | mysql -u root --skip-password && \
-	# mysql -e "FLUSH PRIVILEGES;" | mysql -u root -p --skip-password && \
-    # echo "update mysql.user set plugin = 'mysql_native_password' where user='root';" | mysql -u root
 
 COPY srcs/wp-config.php var/www/html/wordpress/
 
@@ -28,10 +23,6 @@ RUN wget https://files.phpmyadmin.net/phpMyAdmin/5.0.4/phpMyAdmin-5.0.4-all-lang
 COPY srcs/config.inc.php var/www/html/phpmyadmin/
 
 RUN chmod 0755 /var/www/html/phpmyadmin/config.inc.php
-    # service mysql start && \
-	# echo "GRANT ALL PRIVILEGES ON *.* TO 'apita-da'@'localhost' IDENTIFIED BY '1234' WITH GRANT OPTION;" | mysql -u root  && \
-	# echo "FLUSH PRIVILEGES;" | mysql -u root 
-
 
 #ssl
 RUN chmod 700 /etc/ssl/private && \
